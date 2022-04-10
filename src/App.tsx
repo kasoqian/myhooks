@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./app.css";
+import useCountDown from "./hooks/useCountDown";
 
 import Keyup from "./pages/keyup";
 import Mouse from "./pages/mouse";
 import NextTick from "./pages/nextTick";
 import Screen from "./pages/screen";
+import CountDown from "./pages/useCountDown";
 
-type Pages = "keyup" | "screen" | "mouse" | "nextTick";
+type Pages = "keyup" | "screen" | "mouse" | "nextTick" | "countDown";
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Pages>("keyup");
@@ -18,6 +20,7 @@ function App() {
         <button onClick={() => setCurrentPage("mouse")}>监测鼠标位置</button>
         <button onClick={() => setCurrentPage("keyup")}>监测按键情况</button>
         <button onClick={() => setCurrentPage("nextTick")}>nextTick</button>
+        <button onClick={() => setCurrentPage("countDown")}>倒计时</button>
       </div>
       <hr />
       <div className="pages">
@@ -25,6 +28,7 @@ function App() {
         {currentPage === "mouse" ? <Mouse></Mouse> : null}
         {currentPage === "screen" ? <Screen></Screen> : null}
         {currentPage === "nextTick" ? <NextTick></NextTick> : null}
+        {currentPage === "countDown" ? <CountDown></CountDown> : null}
       </div>
     </div>
   );
